@@ -1,6 +1,4 @@
-Certainly! Below is an example of how you might structure the README to include an Entity-Relationship Diagram (ERD) for a chat API.
 
-```markdown
 # Chat API
 
 This is a simple chat API built using Node.js, Express.js, and MongoDB.
@@ -102,4 +100,3 @@ If you'd like to contribute, please fork the repository and make changes as you 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
 
-In this example, a placeholder image `./docs/erd.png` is used for the ERD. You should replace it with the actual path or URL to your ERD image. Additionally, you can provide more detailed explanations about the entities and relationships in your ERD if necessary.
