@@ -1,4 +1,4 @@
-import ApiError from '../util/api-error';
+import ApiError from '../utils/api-error';
 import { Response, Request, NextFunction } from 'express';
 
 const validate =
