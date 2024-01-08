@@ -1,7 +1,14 @@
 
 # Chat API
 
-This is a simple chat API built using Node.js, Express.js, and MongoDB.
+A simple chat application built with MongoDB, Node.js, TypeScript, and Express.js.
+
+## Features
+
+- **Real-time Messaging:** Users can send and receive messages in real-time.
+- **User Authentication:** Users can create accounts and log in securely.
+- **Multiple Chat Rooms:** Users can join different chat rooms and engage in discussions.
+- **Message History:** Chat rooms retain message history for users who join later.
 
 ## Prerequisites
 
