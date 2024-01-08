@@ -9,3 +9,21 @@ export const getByEmail = async (email: string) => {
     throw ApiError.from(error);
   }
 };
+
+export const getById = async (id: string) => {
+  try {
+    const result = await userSchema.findById(id);
+    return result;
+  } catch (error) {
+    throw ApiError.from(error);
+  }
+};
+
+export const getAll = async () => {
+  try {
+    const result = await userSchema.find();
+    return result;
+  } catch (error) {
+    throw ApiError.from(error);
+  }
+};
