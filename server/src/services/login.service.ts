@@ -27,6 +27,6 @@ export const login = async (user: any) => {
       refreshToken: refreshToken,
     };
   } catch (error) {
-    throw ApiError.from(error);
+    throw new Error('Email or Password not correct');
   }
 };

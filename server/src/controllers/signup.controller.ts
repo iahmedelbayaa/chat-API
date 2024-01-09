@@ -10,7 +10,7 @@ export const signup = async (
   const user = req.body;
   try {
     await signupService.signup(user);
-    res.status(StatusCode.CREATED).json({ message: 'User Sign Up' });
+    res.status(StatusCode.CREATED).json(user);
   } catch (error) {
     res.status(StatusCode.BAD_REQUEST).json(error.message);
   }

@@ -1,5 +1,5 @@
 {
-  "name": "online-shopping",
+  "name": "chat-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -24,7 +24,8 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.7",
     "nodemon": "^3.0.2",
-    "validator": "^13.11.0"
+    "validator": "^13.11.0",
+    "password-validator": "^5.3.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

@@ -25,6 +25,10 @@ class ApiError extends Error {
   static forbidden(message = 'Forbidden') {
     return new ResponseError(message, StatusCode.FORBIDDEN.toString());
   }
+  //json error
+  static jsonError(message = 'Json error') {
+    return new ResponseError(message, StatusCode.JSON_ERROR.toString());
+  }
 }
 
 export default ApiError;

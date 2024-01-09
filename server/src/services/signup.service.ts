@@ -8,7 +8,6 @@ export const signup = async (user: IUser) => {
     const { name, email, password } = user;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    // console.log(name, email, hashedPassword);
     const result = await userSchema.create({
       name,
       email,
@@ -16,6 +15,6 @@ export const signup = async (user: IUser) => {
     });
     return result;
   } catch (error) {
-    throw ApiError.from(error);
+    throw new Error("User with the given email already exist");
   }
 };
