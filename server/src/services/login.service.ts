@@ -7,10 +7,13 @@ export const login = async (user: any) => {
   try {
     const { email, password } = user;
     const storedUser = await userService.getByEmail(email);
-
-    if (!storedUser) {
+    if (!email || !password) {
+      throw ApiError.badRequest('Missing email or password');
+    }
+    if (!storedUser ) {
       throw ApiError.unauthorized('Bad Credentials: Invalid email');
     }
+    
 
     const hashedPassword = storedUser.password;
     const areEqualPasswords = await bcrypt.compare(password, hashedPassword);
@@ -27,6 +30,6 @@ export const login = async (user: any) => {
       refreshToken: refreshToken,
     };
   } catch (error) {
-    throw new Error('Email or Password not correct');
+    throw ApiError.from(error);
   }
 };

@@ -48,15 +48,20 @@ export const AuthContextProvider = ({ children }) => {
     },
     [registerInfo]
   );
+    const updateLoginInfo = useCallback((info) => {
+      setLoginInfo(info);
+    }, []);
   const loginUser = useCallback(
     async (e) => {
       e.preventDefault();
+
       setIsLoginLoading(true);
       setLoginError(null);
       const response = await postRequest(
         `${baseUrl}/login`,
         JSON.stringify(loginInfo)
       );
+
       setIsLoginLoading(false);
 
       if (response.error) {
@@ -67,9 +72,7 @@ export const AuthContextProvider = ({ children }) => {
     },
     [loginInfo]
   );
-  const updateLoginInfo = useCallback((info) => {
-    setLoginInfo(info);
-  }, []);
+
   const logoutUser = useCallback(() => {
     localStorage.removeItem('User');
     setUser(null);
