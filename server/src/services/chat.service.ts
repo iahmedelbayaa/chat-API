@@ -17,7 +17,9 @@ export const createChat = async (firstId: string, secondId: string) => {
     
 };
 
-//getUserChats
+//mongo Hint//
+//The $all operator selects the documents where the value of a field is an array that contains all the specified elements.
+//The $in operator selects the documents where the value of a field equals any value in the specified array.
 export const getUserChats = async (userId: string) => {
     try {
         const result = await Chat.find({ members: { $in: [userId] } });
@@ -28,7 +30,6 @@ export const getUserChats = async (userId: string) => {
 };
 
 
-//findChat
 export const findChat = async (firstId: string, secondId: string) => {
     try {
         const result = await Chat.findOne({ members: { $all: [firstId, secondId] }, });
