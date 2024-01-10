@@ -9,6 +9,9 @@ export const signup = async (
 ) => {
   const user = req.body;
   try {
+    if (!user) {
+      throw new Error('Missing required fields: name, email, password');
+    }
     await signupService.signup(user);
     res.status(StatusCode.CREATED).json(user);
   } catch (error) {

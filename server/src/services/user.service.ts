@@ -10,6 +10,16 @@ export const getByEmail = async (email: string) => {
   }
 };
 
+//searchUser
+export const searchUser = async (name: string) => {
+  try {
+    const result = await userSchema.find({ name });
+    return result;
+  } catch (error) {
+    throw ApiError.from(error);
+  }
+};
+
 export const getById = async (id: string) => {
   try {
     const result = await userSchema.findById(id);

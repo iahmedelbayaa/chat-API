@@ -7,6 +7,12 @@ import { IUser } from '../interfaces/user.interface';
 export const signup = async (user: IUser) => {
   try {
     const { name, email, password } = user;
+    //check If body req is empty
+    if (!name || !email || !password) {
+      throw ApiError.badRequest(
+        'Missing required fields: name, email, password'
+      );
+    }
     const storedUser = await userService.getByEmail(email);
     if (storedUser) {
       throw ApiError.badRequest(
