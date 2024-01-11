@@ -37,7 +37,7 @@ export const findChat = async (
   next: NextFunction
 ) => {
   try {
-    const { firstId, secondId } = req.body;
+    const { firstId, secondId } = req.params;
     const result = await chatService.findChat(firstId, secondId);
     res.status(StatusCode.OK).json(result);
   } catch (error) {
