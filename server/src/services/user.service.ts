@@ -22,7 +22,7 @@ export const searchUser = async (name: string) => {
 
 export const getById = async (id: string) => {
   try {
-    const result = await userSchema.findById(id);
+    const result = await userSchema.findById(id).select('name email');
     return result;
   } catch (error) {
     throw ApiError.from(error);
