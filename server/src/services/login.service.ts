@@ -6,7 +6,7 @@ import ApiError from '../utils/api-error';
 export const login = async (user: any) => {
   try {
     const { email, password } = user;
-    if (!user) {
+    if (!email || !password) {
       throw ApiError.badRequest('Missing email or password');
     }
     const storedUser = await userService.getByEmail(email);
@@ -28,6 +28,8 @@ export const login = async (user: any) => {
       accessToken: accessToken,
       refreshToken: refreshToken,
       name: storedUser.name,
+      _id: storedUser._id,
+      email: storedUser.email,
     };
   } catch (error) {
     throw ApiError.from(error);
