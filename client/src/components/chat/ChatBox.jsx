@@ -7,7 +7,7 @@ import { ChatContext } from '../../context/ChatContext';
 import { useFetchRecipientUser } from '../../hooks/useFetchRecipient';
 
 const ChatBox = () => {
-  const { currentChat, isMessagesLoading, messages, user } =
+  const { currentChat, isMessagesLoading, messages, user ,sendTextMessage} =
     useContext(ChatContext);
   const {
     recipientUser,
@@ -64,7 +64,7 @@ console.log("text", textMessage)
           fontFamily="nunito"
           borderColor="rgba(72,112,223,0.2)"
         />
-        <button className="send-btn">
+        <button className="send-btn" onClick={()=> sendTextMessage(textMessage, user , currentChat?._id , setTextMessage)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
