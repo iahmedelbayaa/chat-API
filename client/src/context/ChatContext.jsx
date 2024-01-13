@@ -141,6 +141,9 @@ export const ChatContextProvider = ({ children, user }) => {
         isMessagesLoading,
         messagesError,
         sendTextMessage,
+        sendTextMessageError,
+        newMwssage,
+        setNewMessage,
       }}
     >
       {children}
