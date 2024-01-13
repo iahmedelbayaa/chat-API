@@ -1,21 +1,26 @@
 // ChatBox.jsx
 import moment from 'moment';
 import InputEmoji from 'react-input-emoji';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Stack } from 'react-bootstrap';
 import { ChatContext } from '../../context/ChatContext';
 import { useFetchRecipientUser } from '../../hooks/useFetchRecipient';
 
 const ChatBox = () => {
-  const { currentChat, isMessagesLoading, messages, user ,sendTextMessage} =
+  const { currentChat, isMessagesLoading, messages, user, sendTextMessage } =
     useContext(ChatContext);
   const {
     recipientUser,
     loading: recipientLoading,
     error: recipientError,
   } = useFetchRecipientUser(currentChat);
-  const [textMessage , setTextMessage] = useState("")
-console.log("text", textMessage)
+  const [textMessage, setTextMessage] = useState('');
+  const scroll = useRef();
+  useEffect(() => {
+    scroll.current?.scrollIntoView({behavior: 'smooth'});
+  },[messages])
+
+  console.log('text', textMessage);
   useEffect(() => {
     // Perform any additional actions when currentChat or recipientUser changes
   }, [currentChat, recipientUser]);
@@ -48,7 +53,8 @@ console.log("text", textMessage)
                 message?.senderId === user?._id
                   ? 'self align-self-end flex-grow-0'
                   : 'align-self-start flex-grow-0'
-              }`}
+                }`}
+              ref = {scroll}
             >
               <span>{message.text}</span>
               <span className="message-footer">
@@ -64,7 +70,12 @@ console.log("text", textMessage)
           fontFamily="nunito"
           borderColor="rgba(72,112,223,0.2)"
         />
-        <button className="send-btn" onClick={()=> sendTextMessage(textMessage, user , currentChat?._id , setTextMessage)}>
+        <button
+          className="send-btn"
+          onClick={() =>
+            sendTextMessage(textMessage, user, currentChat?._id, setTextMessage)
+          }
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
