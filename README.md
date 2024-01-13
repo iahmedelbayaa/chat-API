@@ -1,5 +1,4 @@
 
-```markdown
 # Real-Time Chat App
 
 A simple real-time chat application built with [Your Tech Stack Here].
