@@ -13,15 +13,26 @@ body {
 }
 
 .single-user {
-  background: rgb(0, 213, 255);
-  color: white;
+  background: linear-gradient(135deg, #00d5ff 0%, #0096ff 100%);
+  color: #ffffff;
   cursor: pointer;
-  padding: 5px 7px;
-  border-radius: 10px;
-  margin-right: 0.5rem;
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin: 0.5rem;
+  margin-right: 1rem;
   position: relative;
+  width: 200px; 
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
+.single-user:hover {
+  background: linear-gradient(-135deg, #00d5ff 0%, #0096ff 100%);
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-7px);
+}
 /* User Card */
 .user-card {
   color: white;

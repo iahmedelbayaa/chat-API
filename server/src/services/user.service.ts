@@ -22,7 +22,7 @@ export const searchUser = async (name: string) => {
 
 export const getById = async (id: string) => {
   try {
-    const result = await userSchema.findById(id).select('name email');
+    const result = await userSchema.findById(id);
     return result;
   } catch (error) {
     throw ApiError.from(error);
@@ -31,7 +31,7 @@ export const getById = async (id: string) => {
 
 export const getAll = async () => {
   try {
-    const result = await userSchema.find();
+    const result = await userSchema.find().select('name email _id');;
     return result;
   } catch (error) {
     throw ApiError.from(error);

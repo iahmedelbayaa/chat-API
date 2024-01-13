@@ -1,28 +1,57 @@
-import { useEffect, useState } from "react";
-import { baseUrl, getRequest } from "../utils/services";
+// useFetchRecipient.jsx
 
-export const useFetchRecipientUser = (chat, user) => {
-    const [recipientUser, setRecipientUser] = useState(null);
-    const [error, setError] = useState(null);
+import { useEffect, useState } from 'react';
+import { baseUrl, getRequest } from '../utils/services';
 
-    const recipientId = chat?.members.find((id) => id !== user?._id);
-    useEffect(() => { 
-        const getUser = async () => {
-            if (!recipientId) return null
-            const response = await getRequest(
-              `${baseUrl}/users/find/${recipientId}`
-            );
-            if (response.error) {
-                return setError(response);
-            } 
+export const useFetchRecipientUser = (chat) => {
+  const [recipientUser, setRecipientUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-            setRecipientUser(response);
-            
-            
+  useEffect(() => {
+    const getRecipientId = () => {
+      if (!chat) {
+        setLoading(false);
+        return null;
+      }
+
+      const recipientId = chat.members[1]; // Assuming the second member is the recipient
+      return recipientId;
+    };
+
+    const getUser = async () => {
+      const recipientId = getRecipientId();
+
+      if (!recipientId) {
+        setLoading(false);
+        setRecipientUser(null);
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await getRequest(
+          `${baseUrl}/users/find/${recipientId}`
+        );
+
+        if (response.error) {
+          setError(response.error);
+        } else {
+          setRecipientUser(response);
         }
-        getUser();
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    },[])
-        
-    return {recipientUser }
-}
+    getUser();
+  }, [chat]);
+
+  // No more console logs in this file
+
+  return { recipientUser, loading, error };
+};
