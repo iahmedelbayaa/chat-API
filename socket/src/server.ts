@@ -5,6 +5,11 @@ interface User {
   socketId: string;
 }
 
+interface Message {
+  recipientId: string;
+  senderId: string;
+}
+
 const io = new Server({
   cors: { origin: 'http://localhost:5173' },
 } as Partial<ServerOptions>);
@@ -21,12 +26,24 @@ io.on('connection', (socket: Socket) => {
     io.emit('getOnlineUsers', onlineUsers);
   });
 
-  socket.on('sendMessage', (message: { receiverId: string }) => {
-    const user = onlineUsers.find((user) => user.userId === message.receiverId);
+  socket.on('sendMessage', (message: Message) => {
+    const user = onlineUsers.find(
+      (user) => user.userId === message.recipientId
+    );
     if (user) {
       io.to(user.socketId).emit('getMessage', message);
+      io.to(user.socketId).emit('getNotification', {
+        senderId: message.senderId,
+        isRead: false,
+        date: new Date(),
+      });
     }
+  });
+
+  socket.on('Disconnect', () => {
+    onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+    io.emit('getOnlineUsers', onlineUsers);
   });
 });
 
-
+io.listen(3001);
