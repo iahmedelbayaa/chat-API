@@ -13,7 +13,6 @@ io.on('connection', (socket) => {
         console.log('onlineUsers', onlineUsers);
         io.emit('getOnlineUsers', onlineUsers);
     });
-    // Server-side code
     socket.on('sendMessage', (message) => {
         const user = onlineUsers.find((user) => user.userId === message.recipientId);
         if (user) {
@@ -23,7 +22,6 @@ io.on('connection', (socket) => {
                 isRead: false,
                 date: new Date(),
             });
-            console.log('Notification sent to:', user.userId);
         }
     });
     socket.on('Disconnect', () => {

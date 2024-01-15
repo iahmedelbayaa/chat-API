@@ -1,97 +1,109 @@
 
-# Real-Time Chat App
+# Chat API
 
-A simple real-time chat application built with [Your Tech Stack Here].
+A simple chat application built with MongoDB, Node.js, TypeScript, and Express.js.
 
 ## Features
 
-- Real-time communication
-- User authentication
-- Chat room creation
-- Message history
+- **Real-time Messaging:** Users can send and receive messages in real-time.
+- **User Authentication:** Users can create accounts and log in securely.
+- **Multiple Chat Rooms:** Users can join different chat rooms and engage in discussions.
+- **Message History:** Chat rooms retain message history for users who join later.
 
-## Technologies Used
+## Prerequisites
 
-- [React](https://reactjs.org/)
-- [Node.js](https://nodejs.org/)
-- [Express](https://expressjs.com/)
-- [Socket.io](https://socket.io/)
-- [MongoDB](https://www.mongodb.com/)
-
-## Setup
-
-### Prerequisites
+Before you begin, ensure you have met the following requirements:
 
 - Node.js installed
+- npm (Node Package Manager) installed
 - MongoDB installed and running
 
-### Installation
+## Entity-Relationship Diagram (ERD)
+
+![Chat API ERD](./docs/erd.png)
+
+## Getting Started
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/yourusername/real-time-chat-app.git
-   ```
+    ```bash
+    git clone https://github.com/your-username/chat-api.git
+    ```
 
-2. Change into the project directory:
+2. Navigate to the project directory:
 
-   ```bash
-   cd real-time-chat-app
-   ```
+    ```bash
+    cd chat-api
+    ```
 
-3. Install dependencies for the server:
+3. Install dependencies:
 
-   ```bash
-   cd server
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
-4. Install dependencies for the client:
+4. Set up your MongoDB database:
 
-   ```bash
-   cd ../client
-   npm install
-   ```
+    - Create a MongoDB database and note the connection URI.
+    - Update the `config/default.json` file with your MongoDB connection URI.
 
-5. Create a `.env` file in the `server` directory and configure environment variables (e.g., MongoDB connection string, secret key).
+5. Start the server:
 
-6. Start the server:
+    ```bash
+    npm start
+    ```
 
-   ```bash
-   cd server
-   npm start
-   ```
+The API will be running at [http://localhost:3000](http://localhost:3000).
 
-7. Start the client:
+## API Endpoints
 
-   ```bash
-   cd ../client
-   npm start
-   ```
+### 1. Get All Messages
 
-8. Open your browser and go to `http://localhost:3000` to use the chat application.
+- **Endpoint:** `GET /messages`
+- **Description:** Get a list of all messages.
 
-## Usage
+### 2. Send a Message
 
-1. **Register/Login:**
-   - Open the application in your browser.
-   - Register or log in with your credentials.
+- **Endpoint:** `POST /messages`
+- **Description:** Send a new message.
+- **Request Body:**
 
-2. **Chat Room Creation:**
-   - Create a new chat room.
-   - Share the room link with others to join.
+    ```json
+    {
+      "user": "John Doe",
+      "message": "Hello, world!"
+    }
+    ```
 
-3. **Real-Time Communication:**
-   - Start sending and receiving messages in real-time.
+### 3. Get Messages in a Room
+
+- **Endpoint:** `GET /messages/:room`
+- **Description:** Get messages in a specific room.
+
+### 4. Create a Room
+
+- **Endpoint:** `POST /rooms`
+- **Description:** Create a new chat room.
+- **Request Body:**
+
+    ```json
+    {
+      "name": "General"
+    }
+    ```
+
+## Configuration
+
+Update the configuration in `config/default.json` as needed.
+
+- `MONGO_URI`: MongoDB connection URI.
 
 ## Contributing
 
-Contributions are welcome! Fork the project, create your feature branch, commit your changes, and open a pull request.
+If you'd like to contribute, please fork the repository and make changes as you see fit. Pull requests are warmly welcome.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
 
-Make sure to replace the placeholder values such as `[Your Tech Stack Here]` with the actual technologies you used, and update the URLs and instructions accordingly. Include additional sections or details based on the specific features and functionalities of your chat application.
