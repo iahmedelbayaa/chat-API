@@ -1,7 +1,7 @@
 
 # Chat API
 
-A simple chat application built with MongoDB, Node.js, TypeScript, and Express.js.
+A simple real-time chat application built with [Your Tech Stack Here].
 
 ## Features
 
@@ -107,3 +107,4 @@ If you'd like to contribute, please fork the repository and make changes as you 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
 
+Make sure to replace the placeholder values such as `[Your Tech Stack Here]` with the actual technologies you used, and update the URLs and instructions accordingly. Include additional sections or details based on the specific features and functionalities of your chat application.
