@@ -1,7 +1,7 @@
 
 # Chat API
 
-A simple real-time chat application built with [Your Tech Stack Here].
+A simple real-time chat application built with nodejs with socket.io.
 
 ## Features
 
